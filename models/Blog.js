@@ -1,7 +1,26 @@
 const mongoose = require("mongoose");
 
+const month = [
+   "January",
+   "February",
+   "March",
+   "April",
+   "May",
+   "June",
+   "July",
+   "August",
+   "September",
+   "October",
+   "November",
+   "December",
+];
+
 const blogSchema = new mongoose.Schema({
-   user: {
+   userId: {
+      type: String,
+      required: true,
+   },
+   username: {
       type: String,
       required: true,
    },
@@ -9,21 +28,30 @@ const blogSchema = new mongoose.Schema({
       type: String,
       required: true,
    },
-   comments: [
-      {
-         user: {
-            type: String,
-            required: true,
+   comments: {
+      type: [
+         {
+            user: {
+               type: String,
+               required: true,
+            },
+            commentFromUser: {
+               type: String,
+               required: true,
+            },
          },
-         commentFromUser: {
-            type: String,
-            required: true,
-         },
-      },
-   ],
+      ],
+      default: null,
+   },
+   isActive: {
+      type: Boolean,
+      default: true,
+   },
    createdOn: {
-      type: Date,
-      default: new Date(),
+      type: String,
+      default: `${new Date().getFullYear()} ${
+         month[new Date().getMonth()]
+      } ${new Date().getDate()} `,
    },
 });
 
