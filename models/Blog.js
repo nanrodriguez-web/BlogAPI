@@ -1,3 +1,4 @@
+//importing modules
 const mongoose = require("mongoose");
 
 const month = [
@@ -15,6 +16,7 @@ const month = [
    "December",
 ];
 
+//creating blogSchema
 const blogSchema = new mongoose.Schema({
    userId: {
       type: String,
@@ -63,4 +65,5 @@ const blogSchema = new mongoose.Schema({
    },
 });
 
+//exporting model
 module.exports = mongoose.model("Blog", blogSchema);

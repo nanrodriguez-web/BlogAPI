@@ -1,13 +1,14 @@
 //Import Blog Schema
 const Blog = require("../models/Blog.js");
+const User = require("../models/User.js");
 
-//createBlog a User
+//creating a Blog by a registered User
 module.exports.createBlog = async (reqBody) => {
    //destructuring request body
    const { userData, content } = reqBody;
 
    //verify if the user is login
-   if (userData !== null) {
+   if (userData.id != null) {
       //creating a new blog
       let blog = new Blog({
          userId: userData.id,
@@ -56,9 +57,12 @@ module.exports.getAllBlogs = async (reqBody) => {
    //finding all active blog
    const blog = await Blog.find({ isActive: true });
 
+   //if the blogs is not empty
    if (blog.length != 0) {
       return blog;
-   } else {
+   }
+   //if there is no blog
+   else {
       return false;
    }
 };
@@ -71,12 +75,17 @@ module.exports.updateUserBlog = async (reqBody) => {
    // finding blog via id
    const blog = await Blog.findById(blogId);
 
+   //check if the blog exists
    if (blog != null) {
       // checking if the log user owns the post
       if (blog.userId === userData.id) {
+         //updating the blog content
          blog.content = content;
+
+         //saving the blog content changes
          const result = await blog.save();
 
+         //if success
          if (result != null) {
             return true;
          } else {
@@ -87,7 +96,9 @@ module.exports.updateUserBlog = async (reqBody) => {
       else {
          return false;
       }
-   } else {
+   }
+   //if blog not exists
+   else {
       return false;
    }
 };
@@ -123,7 +134,9 @@ module.exports.archiveBlog = async (reqBody) => {
          else {
             return false;
          }
-      } else {
+      }
+      //if not the owner
+      else {
          return false;
       }
    }
@@ -138,27 +151,33 @@ module.exports.addComment = async (reqBody) => {
    //desctructing the request body
    const { userData, blogId, comment } = reqBody;
 
+   //verifying the blog exists
    const blog = await Blog.findById(blogId);
 
-   console.log(blog);
-
+   //if the blog exists
    if (blog != null) {
+      //creating the comment
       let blogComment = {
          userId: userData.id,
          user: userData.username,
          commentFromUser: comment,
       };
 
+      //adding the comment to the blog
       blog.comments.push(blogComment);
 
+      //saving the comment
       const result = await blog.save();
 
+      //if successful
       if (result != null) {
          return true;
       } else {
          return false;
       }
-   } else {
+   }
+   //if the blog not exists
+   else {
       return false;
    }
 };
