@@ -1,0 +1,28 @@
+{
+   "name": "blogapi",
+   "version": "0.0.1",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "nodemon server.js"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/nanrodriguez-web/BlogAPI.git"
+   },
+   "author": "Renan Rodriguez",
+   "license": "Apache License 2.0",
+   "bugs": {
+      "url": "https://github.com/nanrodriguez-web/BlogAPI/issues"
+   },
+   "homepage": "https://github.com/nanrodriguez-web/BlogAPI#readme",
+   "dependencies": {
+      "bcrypt": "^5.1.0",
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "jsonwebtoken": "^9.0.0",
+      "mongoose": "^7.0.0",
+      "nodemon": "^2.0.21"
+   }
+}
