@@ -36,8 +36,25 @@ module.exports.getUserBlogs = async (reqBody) => {
    //destructuring request body
    const { userData } = reqBody;
 
-   //finding blog by users Id  and isActive
-   const blog = await Blog.find({ userId: userData.id, isActive: true });
+   //check if the userDataId is not empty
+   if (userData.id != null) {
+      //finding blog by users Id  and isActive
+      const blog = await Blog.find({ userId: userData.id, isActive: true });
+
+      if (blog.length != 0) {
+         return blog;
+      } else {
+         return false;
+      }
+   } else {
+      return false;
+   }
+};
+
+//retrieve public blogs
+module.exports.getAllBlogs = async (reqBody) => {
+   //finding all active blog
+   const blog = await Blog.find({ isActive: true });
 
    if (blog.length != 0) {
       return blog;

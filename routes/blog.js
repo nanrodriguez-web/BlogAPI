@@ -36,6 +36,17 @@ router.get("/retreiveUserBlogs", auth.verify, async (req, res) => {
    }
 });
 
+// retrieve all active blogs
+router.get("/retreiveBlogs", async (req, res) => {
+   try {
+      const resultFromController = await blogController.getAllBlogs(req.body);
+      res.send(resultFromController);
+   } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal server error");
+   }
+});
+
 // updating users blog
 router.put("/updateBlog/:blogId", auth.verify, async (req, res) => {
    try {
