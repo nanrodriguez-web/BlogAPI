@@ -31,6 +31,10 @@ const blogSchema = new mongoose.Schema({
    comments: {
       type: [
          {
+            userId: {
+               type: String,
+               required: true,
+            },
             user: {
                type: String,
                required: true,
@@ -38,6 +42,10 @@ const blogSchema = new mongoose.Schema({
             commentFromUser: {
                type: String,
                required: true,
+            },
+            commentedOn: {
+               type: Date,
+               default: new Date(),
             },
          },
       ],
