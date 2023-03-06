@@ -9,7 +9,7 @@ const specifications = {
    },
    servers: [
       {
-         url: "http://localhost:4000",
+         url: "https://blogapi-1pat.onrender.com",
       },
    ],
    paths: {
