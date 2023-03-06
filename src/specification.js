@@ -45,9 +45,9 @@ const specifications = {
          },
       },
       "/users/login": {
-         description: "User Registration",
+         description: "User Login",
          post: {
-            description: "Register user",
+            description: "Login User",
             requestBody: {
                content: {
                   "application/json": {
