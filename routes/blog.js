@@ -118,7 +118,7 @@ router.put("/updateComment/:blogId", auth.verify, async (req, res) => {
 });
 
 //deleting comment to a blog
-router.delete("/deleteComment/:blogId", auth.verify, async (req, res) => {
+router.put("/deleteComment/:blogId", auth.verify, async (req, res) => {
    try {
       const data = {
          userData: auth.decode(req.headers.authorization),
